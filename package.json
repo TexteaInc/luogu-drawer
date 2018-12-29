@@ -1,0 +1,9 @@
+{
+  "name": "luogu-drawer",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "repository": "https://github.com/AimonaStudio/luogu-drawer.git",
+  "author": "himself65 <himself6565@gmail.com>",
+  "license": "MIT",
+  "private": true
+}
