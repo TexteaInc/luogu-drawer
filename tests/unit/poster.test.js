@@ -1,4 +1,4 @@
-import { convertMap, dataConvertToTask } from '../../src/utils/helpers'
+import { convertMap, dataConvertToTask, getTask } from '../../src/utils/helpers'
 
 it('should convert map', () => {
   const map = require('./data').map
@@ -25,4 +25,17 @@ it('should convert data', () => {
       [18, 26, 1],
       [19, 28, 1],
       [20, 29, 1]])
+})
+
+it('should get task', function () {
+  const res = getTask([
+    [0, 0, 1],
+    [0, 1, 1],
+    [0, 2, 1]
+  ], [
+    '1122',
+    '2222',
+    '2222'
+  ])
+  expect(res.length).toEqual(1)
 })

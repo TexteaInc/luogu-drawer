@@ -1,3 +1,5 @@
+import forEach from 'lodash/forEach'
+
 export function convertMap (map) {
   const _ = []
   map.trim().split('\n').forEach((v, k) => {
@@ -24,4 +26,17 @@ export function dataConvertToTask (data, config = {}) {
     x++, y++
   }
   return ans
+}
+
+export function getTask (data, map) {
+  const _ = []
+  forEach(data, (val) => {
+    const [x, y, color] = val
+    if (parseInt(map[x][y]) === parseInt(color)) {
+      //
+    } else {
+      _.push(val)
+    }
+  })
+  return _
 }
