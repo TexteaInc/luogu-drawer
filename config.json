@@ -1,5 +1,10 @@
 {
   "port": 3010,
   "corsPort": 3011,
-  "appName": "luogudrawer"
+  "appName": "luogudrawer",
+  "urls": {
+    "get": {
+      "captcha": "https://www.luogu.org/download/captcha"
+    }
+  }
 }
