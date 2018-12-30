@@ -47,47 +47,65 @@ class DrawerPoster extends EventEmitter {
     })
   }
 
-  registerEvent () {
-    this.on('start', () => {
+  async checkMap () {
+    const data = require(this.taskFilePath)
+    this.task = dataConvertToTask(data, {
+      startX: this.start.x,
+      startY: this.start.y
+    })
+    await axios.get(this.boardUrl).then(res => {
+      return convertMap(res.data)
+    }).then(map => {
+      this.tasks = getTask(data, map)
+      console.log('init tasks finished')
+    })
+  }
+
+
+  async registerEvent () {
+    await this.on('start', () => {
       console.log('start draw')
       for (const k in this.users) {
         const user = this.users[k]
         const cookie = user.cookie
-        axios.post(this.paintUrl, {}).then(res => {
+        const handleTask = (task) => {
+          if (!Array.isArray(task)) return []
+          const [x, y, color] = task
+          return { x: x, y: y, color: color }
+        }
+        const task = handleTask(this.tasks[0])
+        axios.post(this.paintUrl, task, {
+          headers: {
+            cookie: cookie
+          }
+        }).then(res => {
           if (res.status === 500) {
             console.error('cooling timing')
+          } else {
+            this.tasks.pop()
           }
         })
       }
     })
-
-    this.on('checkMap', () => {
-      // should be a json
-      const data = require(this.taskFilePath)
-      this.task = dataConvertToTask(data, {
-        startX: 100,
-        startY: 237
-      })
-      axios.get(this.boardUrl).then(res => {
-        return convertMap(res.data)
-      }).then(map => {
-        this.tasks = getTask({ data: data, map: map })
-      })
-    })
+    await this.on('checkMap', this.checkMap)
   }
 
-  startLoop () {
+  async startLoop () {
     this.startTask()
     this.removeAllListeners()
-    this.registerEvent()
-    const delay = 30 * 1000 + Math.random() * 5
+    await this.checkMap()
+    await this.registerEvent()
+    const shortDelay = 30 * 1000 + Math.random() * 5
+    const longDelay = 120 * 1000 + Math.random() * 10
     //
     console.log('emit start event')
     const fn = () => {
-      this.emit('start')
       this.emit('checkMap')
     }
-    fn(), setTimeout(fn, delay)
+    fn(), setTimeout(fn, shortDelay)
+    setTimeout(() => {
+      this.emit('start')
+    }, longDelay)
   }
 }
 

@@ -29,6 +29,8 @@ export function dataConvertToTask (data, config = {}) {
 }
 
 export function getTask (data, map) {
+  if (data === undefined || map === undefined)
+    throw 'error args'
   const _ = []
   forEach(data, (val) => {
     const [x, y, color] = val
