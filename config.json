@@ -7,8 +7,13 @@
       "captcha": "https://www.luogu.org/download/captcha"
     }
   },
-  "start": {
-    "x": 100,
-    "y": 237
-  }
+  "data": [
+    {
+      "name": "bread",
+      "x": 736,
+      "y": 336
+    }
+  ],
+  "checkDuration": 500,
+  "postDuration": 30
 }

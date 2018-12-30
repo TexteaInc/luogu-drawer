@@ -1,7 +1,8 @@
 {
   "name": "luogu-drawer",
   "version": "1.0.0",
-  "main": "src/index.js",
+  "source": "src/index.js",
+  "main": "dist/index.js",
   "repository": "https://github.com/AimonaStudio/luogu-drawer.git",
   "author": "himself65 <himself6565@gmail.com>",
   "license": "MIT",
@@ -45,7 +46,14 @@
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-standard": "^4.0.0",
     "jest": "^23.6.0",
-    "nodemon": "^1.18.9"
+    "nodemon": "^1.18.9",
+    "rollup": "^1.0.0",
+    "rollup-plugin-alias": "^1.5.1",
+    "rollup-plugin-babel": "^4.2.0",
+    "rollup-plugin-commonjs": "^9.2.0",
+    "rollup-plugin-json": "^3.1.0",
+    "rollup-plugin-node-resolve": "^4.0.0",
+    "rollup-plugin-uglify": "^6.0.0"
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -55,6 +63,7 @@
     "koa-logger": "^3.2.0",
     "koa-router": "^7.4.0",
     "lodash": "^4.17.11",
+    "qs": "^6.6.0",
     "request": "^2.88.0",
     "request-promise": "^4.2.2"
   }

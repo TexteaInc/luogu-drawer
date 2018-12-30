@@ -1,10 +1,12 @@
+# coding=UTF-8
+
 from PIL import Image
 import json
 from colorsys import rgb_to_hsv
 
 configPath = '../config.json'
-dataPath = '../data.json'
-imagePath = "../public/header.jpg"
+dataPath = '../data/newweb.json'
+imagePath = "../public/newweb.jpg"
 
 colors = {
     (0, 0, 0): 0,
@@ -70,7 +72,7 @@ def save(data):
 
 def main():
     im = Image.open(imagePath)
-    im = im.resize((200, 200))
+    # im = im.resize((32, 32))
     data = []
     w, h = im.size
     print("width", w, "height", h)

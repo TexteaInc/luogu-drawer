@@ -14,18 +14,15 @@ export function convertMap (map) {
 }
 
 export function dataConvertToTask (data, config = {}) {
-  const { startX, startY } = config
-  const ans = []
-  let x = startX, y = startY
-  for (const _ in data) {
-    const value = data[_]
-    if (!Array.isArray(value))
+  const { startX = 0, startY = 0 } = config
+  const _ = []
+  forEach(data, val => {
+    if (!Array.isArray(val))
       throw 'data have a wrong structure' + data
-    const [_0, _1, _2] = value
-    ans.push([_0 + x, _1 + y, _2])
-    x++, y++
-  }
-  return ans
+    const [_0, _1, _2] = val
+    _.push([_0 + startX, _1 + startY, _2])
+  })
+  return _
 }
 
 export function getTask (data, map) {
