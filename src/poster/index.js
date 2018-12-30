@@ -102,8 +102,8 @@ class DrawerPoster extends EventEmitter {
     const fn = () => {
       this.emit('checkMap')
     }
-    fn(), setTimeout(fn, shortDelay)
-    setTimeout(() => {
+    fn(), setInterval(fn, shortDelay)
+    setInterval(() => {
       this.emit('start')
     }, longDelay)
   }
