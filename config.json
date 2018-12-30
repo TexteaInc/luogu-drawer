@@ -1,3 +1,5 @@
 {
-
+  "port": 3010,
+  "corsPort": 3011,
+  "appName": "luogudrawer"
 }

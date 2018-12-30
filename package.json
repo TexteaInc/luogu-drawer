@@ -6,9 +6,22 @@
   "author": "himself65 <himself6565@gmail.com>",
   "license": "MIT",
   "private": true,
+  "scripts": {
+    "lint": "eslint --ext .jsx,.js src/",
+    "lint-fix": "yarn lint --fix",
+    "dev": "cross-env NODE_ENV=development nodemon src/index.js --exec babel-node",
+    "start": "cross-env pm2 start ecosystem.config.js --env production",
+    "build": "rimraf dist && cross-env NODE_ENV=production rollup -c",
+    "build:dev": "rimraf dist && cross-env TARGET=development rollup -c",
+    "test": "node build/run-tests.js",
+    "test:unix": "cross-env NODE_ENV=test jest",
+    "test:win32": "cross-env NODE_ENV=test jest -i",
+    "test:coverage": "yarn test --coverage"
+  },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.2.2",
+    "@babel/node": "^7.2.2",
     "@babel/plugin-proposal-class-properties": "^7.2.3",
     "@babel/plugin-proposal-decorators": "^7.2.3",
     "@babel/plugin-proposal-object-rest-spread": "^7.2.0",
@@ -30,9 +43,14 @@
     "eslint-plugin-node": "^8.0.0",
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-standard": "^4.0.0",
-    "jest": "^23.6.0"
+    "jest": "^23.6.0",
+    "nodemon": "^1.18.9"
   },
   "dependencies": {
-    "axios": "^0.18.0"
+    "axios": "^0.18.0",
+    "cors-anywhere": "^0.4.1",
+    "http-proxy": "^1.17.0",
+    "koa": "^2.6.2",
+    "koa-router": "^7.4.0"
   }
 }
