@@ -17,6 +17,57 @@ yarn run start
 
 ## Doc
 
+#### users.json
+
+`id` 仅仅是为了方便出错时候显示
+
+`cookie` **必填**, 用户的Cookie
+
+```json
+[
+  {
+    "id": "xxx",
+    "cookie": "__client_id=xxx; _uid=xxx;"
+  },
+  {
+    "id": "xxx",
+    "cookie": "__client_id=xxx; _uid=xxx;"
+  }
+]
+```
+
+---
+
+#### config.json
+
+- `data` 数据数组，加载 `data` 文件夹对应的 `json` 文件
+
+  - `name` **必填** `json` 文件名字
+  
+  - `x` x轴偏移量
+  
+  - `y` y轴偏移量
+  
+- `checkDuration` 重新加载地图时间间隔，推荐 `20s`
+
+- `postDuration` 每次post时间间隔，推荐 `15s`
+  
+```json
+{
+  "data": [
+    {
+      "name": "bread",
+      "x": 736,
+      "y": 336
+    }
+  ],
+  "checkDuration": 500,
+  "postDuration": 30
+}
+```
+
+---
+
 #### Scripts
 
 `scripts` 文件夹下提供了基本的 `python` 脚本

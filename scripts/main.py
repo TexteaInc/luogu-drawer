@@ -1,12 +1,19 @@
 # coding=UTF-8
+# Author: himself65
+# 仅支持 Python3.x
+# 需要安装 PIL 库
+# > pip install pillow
 
 from PIL import Image
 import json
 from colorsys import rgb_to_hsv
 
-configPath = '../config.json'
-dataPath = '../data/newweb.json'
-imagePath = "../public/newweb.jpg"
+dataPath = '../data/newweb.json'  # 输出地址
+imagePath = "../public/newweb.jpg" # 文件地址，仅支持 .jpg 格式
+
+# 缩放成像素
+width = 32
+height = 32
 
 colors = {
     (0, 0, 0): 0,
@@ -72,7 +79,7 @@ def save(data):
 
 def main():
     im = Image.open(imagePath)
-    # im = im.resize((32, 32))
+    im = im.resize((width, height))
     data = []
     w, h = im.size
     print("width", w, "height", h)
